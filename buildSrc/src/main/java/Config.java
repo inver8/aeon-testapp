@@ -4,7 +4,8 @@ public class Config {
     public static final String VERSION_NAME = "0.0.1";
     public static final String USER_AGENT = "%s %s".formatted(APP_ID, VERSION_NAME);
 
-
+    public static final String API_APP_KEY = "12345";
+    public static final String API_V = "1";
 
     private static final String AEON_TEST_URL = "https://easypay.world/api-test";
     public static final String BASE_API_URL = AEON_TEST_URL;

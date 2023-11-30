@@ -7,18 +7,21 @@ plugins {
 }
 
 android {
-    namespace 'ru.aeon.testapp'
+    namespace Config.APP_ID
     compileSdk 34
 
     defaultConfig {
-        applicationId "ru.aeon.testapp"
+        applicationId Config.APP_ID
         minSdk 27
         targetSdk 34
-        versionCode 1
-        versionName "1.0"
+        versionCode Config.VERSION_CODE
+        versionName Config.VERSION_NAME
 
         buildConfigField("String", "USER_AGENT", "\"$Config.USER_AGENT\"")
         buildConfigField("String", "BASE_API_URL", "\"$Config.BASE_API_URL\"")
+        
+        buildConfigField("String", "API_APP_KEY", "\"$Config.API_APP_KEY\"")
+        buildConfigField("String", "API_V", "\"$Config.API_V\"")
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
