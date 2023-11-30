@@ -14,7 +14,6 @@ class AppModule {
     
     @Singleton
     @Provides
-    fun provideGson() = GsonBuilder().create()
-    
+    fun provideGson(): Gson = GsonBuilder().create()
     
 }

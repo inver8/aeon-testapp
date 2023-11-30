@@ -14,9 +14,11 @@ class PaymentsRepositoryImpl @Inject constructor(
     override fun fetchPayments() = doNetworkRequest(
         request = { api.getPayments() },
         successful = { body ->
-            Either.Right(body.stream()
-                .map { dto -> dto.mapToDomain() }
-                .collect(Collectors.toList()))
+            Either.Right(
+                body.stream()
+                    .map { dto -> dto.mapToDomain() }
+                    .collect(Collectors.toList())
+            )
         }
     )
 }

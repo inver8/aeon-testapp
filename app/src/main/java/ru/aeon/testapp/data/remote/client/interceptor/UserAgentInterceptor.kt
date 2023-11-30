@@ -9,8 +9,7 @@ class UserAgentInterceptor @Inject internal constructor() : Interceptor {
     
     override fun intercept(chain: Interceptor.Chain): Response {
         return chain.proceed(
-            chain.request()
-                .newBuilder()
+            chain.request().newBuilder()
                 .header("User-Agent", BuildConfig.USER_AGENT)
                 .header("app-key", BuildConfig.API_APP_KEY)
                 .header("v", BuildConfig.API_V)
