@@ -4,7 +4,7 @@ import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.POST
-import ru.aeon.testapp.data.remote.client.auth.AuthRequired
+import ru.aeon.testapp.data.remote.client.interceptor.AuthRequired
 import ru.aeon.testapp.data.remote.dto.auth.LoginRequestDto
 import ru.aeon.testapp.data.remote.dto.auth.LoginResponseDto
 import ru.aeon.testapp.data.remote.dto.base.ResponseDto
