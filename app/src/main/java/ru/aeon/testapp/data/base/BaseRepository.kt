@@ -7,6 +7,7 @@ import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
 import retrofit2.Response
 import ru.aeon.testapp.data.remote.dto.base.ResponseDto
+import ru.aeon.testapp.domain.common.Either
 import ru.aeon.testapp.domain.error.NetworkError
 import java.io.InterruptedIOException
 import java.net.ConnectException

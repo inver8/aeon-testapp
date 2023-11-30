@@ -6,7 +6,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
-import ru.aeon.testapp.data.base.Either
+import ru.aeon.testapp.domain.common.Either
 import ru.aeon.testapp.domain.error.NetworkError
 import ru.aeon.testapp.presentation.model.state.UIState
 
