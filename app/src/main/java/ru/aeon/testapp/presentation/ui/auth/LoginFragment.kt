@@ -19,6 +19,7 @@ import ru.aeon.testapp.domain.error.NetworkError
 import ru.aeon.testapp.presentation.base.BaseFragment
 import ru.aeon.testapp.presentation.model.auth.LoginUI
 import ru.aeon.testapp.presentation.model.state.UIState
+import ru.aeon.testapp.presentation.util.KeyboardUtil
 import ru.aeon.testapp.presentation.util.OnTextChanged
 import ru.aeon.testapp.presentation.util.getString
 import ru.aeon.testapp.presentation.util.setTextAndVisibility
@@ -61,8 +62,13 @@ class LoginFragment : BaseFragment(R.layout.fragment_login) {
     }
     
     private fun setupVisibility(state: UIState<*>) {
-        if (state is UIState.Idle) {
-            binding.errorMessage.isVisible = false
+        when (state) {
+            is UIState.Idle -> {
+                binding.errorMessage.isVisible = false
+                binding.loginButton.setLoading(false)
+            }
+            is UIState.Loading -> binding.loginButton.setLoading(true)
+            else -> binding.loginButton.setLoading(false)
         }
     }
     
@@ -87,11 +93,18 @@ class LoginFragment : BaseFragment(R.layout.fragment_login) {
     }
     
     private fun onSuccess(loginUI: LoginUI) {
-        if (loginUI.success)
+        if (loginUI.success) {
+            KeyboardUtil.hide(binding.root)
             findNavController().navigate(R.id.action_loginFragment_to_payments)
+        }
     }
     
     private fun onLoginClick() {
+        if (binding.loginButton.isProgress)
+            return
+    
+        binding.loginButton.setLoading(true)
+        
         val username = binding.usernameEdit.getString().trim()
         val password = binding.passwordEdit.getString()
         viewModel.loginWithUsernamePassword(username, password)
