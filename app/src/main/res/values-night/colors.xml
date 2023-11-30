@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <color name="logo_tint">@color/white</color>
+    
     <color name="text_title">@color/light</color>
     <color name="text_heading">@color/light</color>
 

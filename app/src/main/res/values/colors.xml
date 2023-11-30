@@ -10,6 +10,10 @@
     <color name="light">#EBF0FF</color>
     <color name="dark">#223263</color>
 
+    <color name="ic_launcher_background">#6750A4</color>
+    <color name="splash_background">@color/light</color>
+    <color name="logo_tint">@color/ic_launcher_background</color>
+
     <color name="text_title">@color/dark</color>
     <color name="text_heading">@color/dark</color>
     <color name="text_body">@color/gray</color>
