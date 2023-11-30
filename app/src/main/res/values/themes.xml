@@ -13,6 +13,12 @@
 
     <style name="Theme.AeonTest" parent="Base.Theme.AeonTest" />
 
+    <style name="Theme.AeonTest.Splash" parent="Theme.SplashScreen">
+<!--        <item name="windowSplashScreenBackground">@color/splash_background</item>-->
+        <item name="windowSplashScreenAnimatedIcon">@drawable/logo</item>
+        <item name="postSplashScreenTheme">@style/Theme.AeonTest</item>
+    </style>
+
     <style name="TestApp.Text.Body.Title" parent="TextAppearance.AppCompat">
         <item name="android:textSize">18sp</item>
         <item name="android:textStyle">bold</item>
