@@ -3,9 +3,9 @@ package ru.aeon.testapp.domain.usecase.auth
 import ru.aeon.testapp.domain.repository.AuthRepository
 import javax.inject.Inject
 
-class IsLoggedInUseCase @Inject constructor(
+class IsAuthorizedUseCase @Inject constructor(
     private val repository: AuthRepository
 ) {
     
-    operator fun invoke() = repository.isLoggedIn()
+    operator fun invoke() = repository.isAuthorized()
 }

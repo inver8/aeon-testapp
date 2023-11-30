@@ -10,7 +10,7 @@ import by.kirich1409.viewbindingdelegate.viewBinding
 import dagger.hilt.android.AndroidEntryPoint
 import ru.aeon.testapp.R
 import ru.aeon.testapp.databinding.ActivityMainBinding
-import ru.aeon.testapp.domain.usecase.auth.IsLoggedInUseCase
+import ru.aeon.testapp.domain.usecase.auth.IsAuthorizedUseCase
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -19,7 +19,7 @@ class MainActivity : AppCompatActivity() {
     private val binding by viewBinding { ActivityMainBinding.inflate(layoutInflater) }
     
     @Inject
-    internal lateinit var isLoggedIn: IsLoggedInUseCase
+    internal lateinit var isAuthorized: IsAuthorizedUseCase
     
     override fun onCreate(savedInstanceState: Bundle?) {
         installSplashScreen()
@@ -28,10 +28,10 @@ class MainActivity : AppCompatActivity() {
         window.setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS)
         WindowCompat.setDecorFitsSystemWindows(window, false)
         
-        val navHost = binding.navHostFragmentContentMain.getFragment<NavHostFragment>()
-        val navController = navHost.navController
-        if (isLoggedIn())
-            navController.navigate(R.id.payments)
+        if (isAuthorized()) {
+            val navHost = binding.navHostFragmentContentMain.getFragment<NavHostFragment>()
+            navHost.navController.navigate(R.id.payments)
+        }
     
         setContentView(binding.root)
     }

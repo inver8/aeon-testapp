@@ -22,6 +22,6 @@ class AuthRepositoryImpl @Inject constructor(
         tokenProvider.clearApiToken()
     }
     
-    override fun isLoggedIn() = tokenProvider.isTokenExist()
+    override fun isAuthorized() = tokenProvider.isTokenExist()
     
 }

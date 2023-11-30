@@ -7,6 +7,6 @@ interface AuthRepository {
     
     fun requestLoginUsernamePassword(username: String, password: String): RemoteWrapper<ApiToken>
     fun logout()
-    fun isLoggedIn(): Boolean
+    fun isAuthorized(): Boolean
     
 }
