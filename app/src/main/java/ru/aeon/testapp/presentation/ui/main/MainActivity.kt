@@ -28,9 +28,10 @@ class MainActivity : AppCompatActivity() {
         window.setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS)
         WindowCompat.setDecorFitsSystemWindows(window, false)
         
-        val graph = if (isLoggedIn()) R.navigation.payments else R.navigation.auth
         val navHost = binding.navHostFragmentContentMain.getFragment<NavHostFragment>()
-        navHost.navController.setGraph(graph)
+        val navController = navHost.navController
+        if (isLoggedIn())
+            navController.navigate(R.id.payments)
     
         setContentView(binding.root)
     }
