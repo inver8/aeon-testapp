@@ -13,8 +13,8 @@ class AuthRepositoryImpl @Inject constructor(
 ) : BaseRepository(), AuthRepository {
     
     override fun requestLoginUsernamePassword(username: String, password: String) = doNetworkRequestWithMapping {
-        api.requestAuthPhoneCode(LoginRequestDto(username, password)).onSuccess { r -> 
-            tokenProvider.setApiToken(r.response?.token) 
+        api.requestAuthPhoneCode(LoginRequestDto(username, password)).onSuccess { 
+            tokenProvider.setApiToken(it.response?.token) 
         }
     }
     
