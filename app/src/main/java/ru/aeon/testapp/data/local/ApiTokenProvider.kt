@@ -18,6 +18,10 @@ class ApiTokenProvider @Inject constructor(
         encryptedPrefs.setApiToken(apiToken)
     }
     
+    fun isTokenExist(): Boolean {
+        return !apiToken.isNullOrBlank()
+    }
+    
     fun clearApiToken() {
         apiToken = null
         encryptedPrefs.clearApiToken()

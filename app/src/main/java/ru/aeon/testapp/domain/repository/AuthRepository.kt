@@ -6,5 +6,7 @@ import ru.aeon.testapp.domain.model.ApiToken
 interface AuthRepository {
     
     fun requestLoginUsernamePassword(username: String, password: String): RemoteWrapper<ApiToken>
+    fun logout()
+    fun isLoggedIn(): Boolean
     
 }
