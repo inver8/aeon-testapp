@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">Aeon Test</string>
+
+    <string name="auth_title">Добро пожаловать</string>
+    <string name="auth_subtitle">Войдите, чтобы продолжить</string>
+    <string name="auth_username_hint">Ваш логин</string>
+    <string name="auth_password_hint">Пароль</string>
+    <string name="auth_login_button">Войти</string>
+    
 </resources>
