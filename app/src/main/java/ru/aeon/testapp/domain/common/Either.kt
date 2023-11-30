@@ -1,4 +1,4 @@
-package ru.aeon.testapp.data.base
+package ru.aeon.testapp.domain.common
 
 /**
  * Either is used to short-circuit a computation upon the first error.

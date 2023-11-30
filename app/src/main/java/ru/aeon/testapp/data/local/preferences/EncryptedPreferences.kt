@@ -9,8 +9,8 @@ import java.io.IOException
 import java.security.GeneralSecurityException
 
 class EncryptedPreferences(
-    private val context: Context, 
-    private val filename: String
+    context: Context, 
+    filename: String
 ) {
     
     private lateinit var prefs: SharedPreferences
