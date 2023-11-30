@@ -77,7 +77,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
-        app:layout_constraintBottom_toTopOf="@id/login_button"
+        app:layout_constraintBottom_toTopOf="@id/error_message"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/username_layout"
@@ -93,19 +93,36 @@
             android:imeOptions="actionDone" />
 
     </com.google.android.material.textfield.TextInputLayout>
-    
+
+    <TextView
+        android:id="@+id/error_message"
+        style="@style/TestApp.Text.Heading.H6"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:layout_marginEnd="4dp"
+        android:textColor="@color/text_error"
+        android:visibility="gone"
+        app:layout_constraintBottom_toTopOf="@id/login_button"
+        app:layout_constraintEnd_toEndOf="@id/password_layout"
+        app:layout_constraintStart_toStartOf="@id/password_layout"
+        app:layout_constraintTop_toBottomOf="@id/password_layout"
+        tools:text="Неверное имя пользователя или пароль"
+        tools:visibility="visible" />
+
     <com.google.android.material.button.MaterialButton
         android:id="@+id/login_button"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
         android:text="@string/auth_login_button"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/password_layout"
-        app:layout_constraintWidth_max="480dp"/>
+        app:layout_constraintTop_toBottomOf="@id/error_message"
+        app:layout_constraintWidth_max="480dp"
+        app:layout_goneMarginTop="16dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
