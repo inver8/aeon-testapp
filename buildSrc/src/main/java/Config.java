@@ -7,7 +7,7 @@ public class Config {
     public static final String API_APP_KEY = "12345";
     public static final String API_V = "1";
 
-    private static final String AEON_TEST_URL = "https://easypay.world/api-test";
+    private static final String AEON_TEST_URL = "https://easypay.world/api-test/";
     public static final String BASE_API_URL = AEON_TEST_URL;
     
 }
