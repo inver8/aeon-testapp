@@ -1,6 +1,5 @@
 package ru.aeon.testapp.presentation.ui.auth
 
-import androidx.lifecycle.SavedStateHandle
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -13,7 +12,6 @@ import javax.inject.Inject
 
 @HiltViewModel
 class LoginViewModel @Inject constructor(
-    private val savedStateHandle: SavedStateHandle,
     private val loginUsernamePassword: LoginUsernamePasswordUseCase
 ): BaseViewModel() {
     
@@ -22,5 +20,9 @@ class LoginViewModel @Inject constructor(
     
     fun loginWithUsernamePassword(username: String, password: String) {
         loginUsernamePassword(username, password).collectNetworkRequest(_loginState) { it.toUI() }
+    }
+    
+    fun setLoginStateIdle() {
+        _loginState.value = UIState.Idle()
     }
 }
