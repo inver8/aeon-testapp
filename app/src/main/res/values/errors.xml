@@ -3,5 +3,7 @@
     <string name="server_error">Ошибка сервера</string>
     <string name="server_unavailable">Сервер недоступен</string>
     <string name="connection_error">Ошибка соединения</string>
+
+    <string name="auth_incorrect_credentials">Неверное имя пользователя или пароль</string>
     
 </resources>
