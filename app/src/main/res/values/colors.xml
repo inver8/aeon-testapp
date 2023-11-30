@@ -8,6 +8,7 @@
     <color name="light">#EBF0FF</color>
     <color name="dark">#223263</color>
 
+    <color name="text_title">@color/dark</color>
     <color name="text_heading">@color/dark</color>
     <color name="text_body">@color/gray</color>
     <color name="text_error">@color/red</color>
@@ -15,4 +16,5 @@
     <color name="edit_text">@color/dark</color>
     <color name="edit_icon">@color/gray</color>
     
+    <color name="image_button_tint">@color/gray</color>
 </resources>

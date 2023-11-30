@@ -16,6 +16,7 @@ open class BaseFragment(@LayoutRes layoutId: Int) : Fragment(layoutId) {
     protected fun <T> StateFlow<UIState<T>>.collectUIState(
         lifecycleState: Lifecycle.State = Lifecycle.State.STARTED,
         state: ((UIState<T>) -> Unit)? = null,
+        onIdle: (() -> Unit)? = null,
         onError: ((error: NetworkError) -> Unit),
         onSuccess: ((data: T) -> Unit)
     ) {
