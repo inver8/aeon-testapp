@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="server_error">Ошибка сервера</string>
+    <string name="server_unavailable">Сервер недоступен</string>
+    <string name="connection_error">Ошибка соединения</string>
+    
+</resources>
