@@ -3,6 +3,7 @@ package ru.aeon.testapp.data.remote.dto.payments
 import com.google.gson.annotations.SerializedName
 import ru.aeon.testapp.data.util.DataMapper
 import ru.aeon.testapp.domain.model.Payment
+import java.util.Date
 
 data class PaymentDto(
     
@@ -20,5 +21,17 @@ data class PaymentDto(
     
 ) : DataMapper<Payment> {
     
-    override fun mapToDomain() = Payment(id, title, amount, created) 
+    override fun mapToDomain(): Payment {
+        val amountDouble = try {
+            amount?.toDouble() ?: 0.0
+        } catch (ignore: NumberFormatException) {
+            0.0
+        }
+        
+        val createdDate: Date? = created?.let {
+            Date(it * 1000)
+        }
+        
+        return Payment(id, title, amountDouble, createdDate)
+    }    
 }
