@@ -13,5 +13,4 @@ data class ResponseDto<T>(
     @SerializedName("error")
     val error: ApiErrorDto?
     
-) {
-}
+) 

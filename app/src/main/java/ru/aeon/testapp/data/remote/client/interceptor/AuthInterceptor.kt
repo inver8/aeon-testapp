@@ -7,7 +7,6 @@ import okhttp3.Response
 import okhttp3.ResponseBody.Companion.toResponseBody
 import retrofit2.Invocation
 import ru.aeon.testapp.data.local.ApiTokenProvider
-import ru.aeon.testapp.data.remote.client.auth.AuthRequired
 import javax.inject.Inject
 
 class AuthInterceptor @Inject internal constructor(

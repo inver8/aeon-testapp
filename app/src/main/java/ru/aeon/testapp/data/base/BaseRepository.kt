@@ -9,12 +9,19 @@ import kotlinx.coroutines.flow.flowOn
 import retrofit2.Response
 import ru.aeon.testapp.BuildConfig
 import ru.aeon.testapp.data.remote.dto.base.ResponseDto
+import ru.aeon.testapp.data.util.DataMapper
 import ru.aeon.testapp.domain.common.Either
 import ru.aeon.testapp.domain.error.NetworkError
 import java.io.InterruptedIOException
 import java.net.ConnectException
 
 abstract class BaseRepository {
+    
+    protected fun <T : DataMapper<S>, S> doNetworkRequestWithMapping(
+        request: suspend () -> Response<ResponseDto<T>>
+    ): Flow<Either<NetworkError, S>> = doNetworkRequest(request) { body ->
+        Either.Right(body.mapToDomain())
+    }
     
     protected fun <T, S> doNetworkRequest(
         request: suspend () -> Response<ResponseDto<T>>,

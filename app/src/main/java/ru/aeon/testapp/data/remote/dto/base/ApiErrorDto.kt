@@ -8,6 +8,6 @@ data class ApiErrorDto(
     val errorCode: Int?,
     
     @SerializedName("error_msg")
-    val errorMessage: String
+    val errorMessage: String?
     
 )

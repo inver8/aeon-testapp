@@ -1,4 +1,4 @@
-package ru.aeon.testapp.data.remote.client.auth
+package ru.aeon.testapp.data.remote.client.interceptor
 
 /**
  * Created by Roman on 09.07.2022
