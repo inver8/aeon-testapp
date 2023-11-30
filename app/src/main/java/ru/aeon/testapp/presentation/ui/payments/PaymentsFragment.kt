@@ -6,9 +6,14 @@ import android.view.View
 import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.annotation.StringRes
+import androidx.appcompat.app.AlertDialog
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
+import androidx.core.view.updatePadding
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.RecyclerView
 import by.kirich1409.viewbindingdelegate.viewBinding
+import com.google.android.material.divider.MaterialDividerItemDecoration
 import com.google.android.material.snackbar.Snackbar
 import com.xwray.groupie.GroupieAdapter
 import com.xwray.groupie.Section
@@ -20,6 +25,7 @@ import ru.aeon.testapp.presentation.base.BaseFragment
 import ru.aeon.testapp.presentation.model.payments.PaymentsUI
 import ru.aeon.testapp.presentation.model.state.UIState
 import ru.aeon.testapp.presentation.ui.main.MainActivity
+import ru.aeon.testapp.presentation.util.dp
 import java.util.stream.Collectors
 
 @AndroidEntryPoint
@@ -40,13 +46,28 @@ class PaymentsFragment : BaseFragment(R.layout.fragment_payments) {
     }
     
     private fun setupUI() {
+        ViewCompat.setOnApplyWindowInsetsListener(binding.root) { _, insets ->
+            val systemBarInsets = insets.getInsets(WindowInsetsCompat.Type.systemBars())
+            binding.toolbar.updatePadding(top = systemBarInsets.top)
+            binding.recycler.updatePadding(bottom = systemBarInsets.bottom)
+            return@setOnApplyWindowInsetsListener insets
+        }
+        
         binding.swipeRefresh.setOnRefreshListener { viewModel.fetchPayments() }
         binding.logoutButton.setOnClickListener { onLogoutClick() }
-    
-        val adapter = GroupieAdapter()
-        adapter.stateRestorationPolicy = RecyclerView.Adapter.StateRestorationPolicy.PREVENT_WHEN_EMPTY
-        adapter.add(mainSection)
+        
+        val adapter = GroupieAdapter().apply {
+            stateRestorationPolicy = RecyclerView.Adapter.StateRestorationPolicy.PREVENT_WHEN_EMPTY
+            add(mainSection)
+        }
+        
+        val dividerDecorator = MaterialDividerItemDecoration(requireContext(), MaterialDividerItemDecoration.VERTICAL).apply {
+            dividerInsetStart = 8.dp()
+            dividerInsetEnd = 8.dp()
+        }
+        
         binding.recycler.adapter = adapter
+        binding.recycler.addItemDecoration(dividerDecorator)
     }
     
     private fun setupRequest() {
@@ -95,11 +116,21 @@ class PaymentsFragment : BaseFragment(R.layout.fragment_payments) {
     }
     
     private fun onLogoutClick() {
-        viewModel.logout()
-        val mainActivity = requireActivity()
-        val intent = Intent(mainActivity, MainActivity::class.java)
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-        mainActivity.finish()
-        startActivity(intent)
+        fun logout() {
+            viewModel.logout()
+            val mainActivity = requireActivity()
+            val intent = Intent(mainActivity, MainActivity::class.java)
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+            mainActivity.finish()
+            startActivity(intent)
+        }
+        
+        AlertDialog.Builder(requireContext())
+            .setTitle(R.string.logout_dialog_title)
+            .setMessage(R.string.logout_dialog_message)
+            .setPositiveButton(R.string.logout_dialog_confirm) { _, _ -> logout() }
+            .setNegativeButton(R.string.logout_dialog_cancel) { dialog, _ -> dialog.cancel() }
+            .create()
+            .show()
     }
 }

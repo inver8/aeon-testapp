@@ -3,7 +3,10 @@ package ru.aeon.testapp.presentation.ui.auth
 import android.os.Bundle
 import android.view.View
 import androidx.annotation.StringRes
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.isVisible
+import androidx.core.view.updatePadding
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import by.kirich1409.viewbindingdelegate.viewBinding
@@ -28,12 +31,25 @@ class LoginFragment : BaseFragment(R.layout.fragment_login) {
     
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        
+        setupUI()
+        subscribeToLoginState()
+    }
     
+    private fun setupUI() {
+        ViewCompat.setOnApplyWindowInsetsListener(binding.root) { v, insets ->
+            val systemBarInsets = insets.getInsets(WindowInsetsCompat.Type.systemBars())
+            val imeInsets = insets.getInsets(WindowInsetsCompat.Type.ime())
+            v.updatePadding(
+                top = systemBarInsets.top, 
+                bottom = systemBarInsets.bottom + imeInsets.bottom
+            )
+            return@setOnApplyWindowInsetsListener insets
+        }
+        
         binding.loginButton.setOnClickListener { onLoginClick() }
         binding.usernameEdit.addTextChangedListener(OnTextChanged(binding.usernameEdit) { _, _ -> clearError() })
         binding.passwordEdit.addTextChangedListener(OnTextChanged(binding.passwordEdit) { _, _ -> clearError() })
-        
-        subscribeToLoginState()
     }
     
     private fun subscribeToLoginState() {

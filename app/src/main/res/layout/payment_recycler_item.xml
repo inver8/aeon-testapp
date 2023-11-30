@@ -4,31 +4,60 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:background="?android:attr/selectableItemBackground"
+    android:clickable="true"
+    android:clipToPadding="false"
+    android:focusable="true"
+    android:padding="16dp"
     tools:context=".presentation.ui.payments.PaymentRecyclerItem">
 
     <TextView
         android:id="@+id/payment_title"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintEnd_toStartOf="@+id/payment_date_caption"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="Test Payment 1" />
 
     <TextView
-        android:id="@+id/payment_amount"
+        android:id="@+id/payment_amount_caption"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:text="@string/payment_amount"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/payment_title"
+        app:layout_constraintTop_toBottomOf="@id/payment_title" />
+
+    <TextView
+        android:id="@+id/payment_amount"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintBaseline_toBaselineOf="@id/payment_amount_caption"
+        app:layout_constraintEnd_toStartOf="@id/payment_date"
+        app:layout_constraintStart_toEndOf="@id/payment_amount_caption"
         tools:text="101.67" />
 
     <TextView
+        android:id="@+id/payment_date_caption"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/payment_date"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@id/payment_date"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@id/payment_date" />
+
+    <TextView
+        android:id="@+id/payment_date"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
         tools:text="2131" />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>
