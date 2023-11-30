@@ -12,8 +12,9 @@ class UserAgentInterceptor @Inject internal constructor() : Interceptor {
             chain.request()
                 .newBuilder()
                 .header("User-Agent", BuildConfig.USER_AGENT)
+                .header("app-key", BuildConfig.API_APP_KEY)
+                .header("v", BuildConfig.API_V)
                 .build()
         )
     }
-    
 }
