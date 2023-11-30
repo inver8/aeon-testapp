@@ -6,7 +6,7 @@ public class Config {
 
 
 
-    private static final String AEON_TEST_URL = "https://easypay.world/api-test/";
+    private static final String AEON_TEST_URL = "https://easypay.world/api-test";
     public static final String BASE_API_URL = AEON_TEST_URL;
     
 }
