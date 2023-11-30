@@ -2,16 +2,21 @@ package ru.aeon.testapp.data.remote.repository
 
 import ru.aeon.testapp.data.base.BaseRepository
 import ru.aeon.testapp.data.remote.service.ApiService
-import ru.aeon.testapp.domain.common.RemoteWrapper
-import ru.aeon.testapp.domain.model.Payment
+import ru.aeon.testapp.domain.common.Either
 import ru.aeon.testapp.domain.repository.PaymentsRepository
+import java.util.stream.Collectors
 import javax.inject.Inject
 
 class PaymentsRepositoryImpl @Inject constructor(
     private val api: ApiService
 ) : BaseRepository(), PaymentsRepository {
     
-    override fun getPayments(): RemoteWrapper<List<Payment>> {
-        TODO("Not yet implemented")
-    }
+    override fun fetchPayments() = doNetworkRequest(
+        request = { api.getPayments() },
+        successful = { body ->
+            Either.Right(body.stream()
+                .map { dto -> dto.mapToDomain() }
+                .collect(Collectors.toList()))
+        }
+    )
 }

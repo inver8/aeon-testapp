@@ -1,5 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/payments">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/payments"
+    app:startDestination="@id/paymentsFragment">
 
+    <fragment
+        android:id="@+id/paymentsFragment"
+        android:name="ru.aeon.testapp.presentation.ui.payments.PaymentsFragment"
+        android:label="fragment_payments"
+        tools:layout="@layout/fragment_payments" />
 </navigation>

@@ -5,5 +5,5 @@ import ru.aeon.testapp.domain.model.Payment
 
 interface PaymentsRepository {
     
-    fun getPayments(): RemoteWrapper<List<Payment>>
+    fun fetchPayments(): RemoteWrapper<List<Payment>>
 }
