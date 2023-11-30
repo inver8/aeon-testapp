@@ -119,21 +119,22 @@
             app:layout_constraintTop_toBottomOf="@id/password_layout"
             tools:text="Неверное имя пользователя или пароль"
             tools:visibility="visible" />
-
-        <com.google.android.material.button.MaterialButton
+        
+        <ru.aeon.testapp.presentation.ui.widget.ProgressButtonView
             android:id="@+id/login_button"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:text="@string/auth_login_button"
             android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="16dp"
-            android:text="@string/auth_login_button"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/error_message"
             app:layout_constraintWidth_max="480dp"
-            app:layout_goneMarginTop="16dp" />
+            app:layout_goneMarginTop="16dp"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+    
 </androidx.core.widget.NestedScrollView>
