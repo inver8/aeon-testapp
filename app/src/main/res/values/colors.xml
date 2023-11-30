@@ -10,7 +10,9 @@
 
     <color name="text_heading">@color/dark</color>
     <color name="text_body">@color/gray</color>
-    <color name="edit_icon">@color/gray</color>
     <color name="text_error">@color/red</color>
+    
+    <color name="edit_text">@color/dark</color>
+    <color name="edit_icon">@color/gray</color>
     
 </resources>
