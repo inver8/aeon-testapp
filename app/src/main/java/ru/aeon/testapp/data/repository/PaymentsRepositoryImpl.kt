@@ -1,4 +1,4 @@
-package ru.aeon.testapp.data.remote.repository
+package ru.aeon.testapp.data.repository
 
 import ru.aeon.testapp.data.base.BaseRepository
 import ru.aeon.testapp.data.remote.service.ApiService
