@@ -1,11 +1,13 @@
 package ru.aeon.testapp.data.base
 
+import android.util.Log
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
 import retrofit2.Response
+import ru.aeon.testapp.BuildConfig
 import ru.aeon.testapp.data.remote.dto.base.ResponseDto
 import ru.aeon.testapp.domain.common.Either
 import ru.aeon.testapp.domain.error.NetworkError
@@ -34,16 +36,19 @@ abstract class BaseRepository {
         when (exception) {
             is InterruptedIOException -> {
                 val message = exception.localizedMessage ?: "Timeout Occurred!"
+                if (BuildConfig.DEBUG) Log.e(TAG, exception.toString())
                 emit(Either.Left(NetworkError.Timeout(message)))
             }
 
             is ConnectException -> {
                 val message = exception.localizedMessage ?: "Connection Error Occurred!"
+                if (BuildConfig.DEBUG) Log.e(TAG, exception.toString())
                 emit(Either.Left(NetworkError.Connection(message)))
             }
 
             else -> {
                 val message = exception.localizedMessage ?: "Error Occurred!"
+                if (BuildConfig.DEBUG) Log.e(TAG, exception.toString())
                 emit(Either.Left(NetworkError.Unexpected(message)))
             }
         }
@@ -54,4 +59,7 @@ abstract class BaseRepository {
         return this
     }
     
+    companion object {
+        private val TAG = BaseRepository::class.java.simpleName
+    }
 }
