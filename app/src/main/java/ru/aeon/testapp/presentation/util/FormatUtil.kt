@@ -29,11 +29,7 @@ object FormatUtil {
         floatFormat.decimalFormatSymbols = decimalSymbols
     }
     
-    fun decimal(value: Double): String {
-        return decimal(value, false)
-    }
-    
-    fun decimal(value: Double, force: Boolean): String {
+    fun decimal(value: Double, force: Boolean = false): String {
         return if (value == value.toInt().toDouble() && !force)
             integerFormat.format(value)
         else
