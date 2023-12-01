@@ -9,7 +9,6 @@ import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import retrofit2.converter.scalars.ScalarsConverterFactory
 import ru.aeon.testapp.BuildConfig
 import ru.aeon.testapp.data.remote.client.interceptor.AuthInterceptor
 import ru.aeon.testapp.data.remote.client.interceptor.UserAgentInterceptor
@@ -57,7 +56,6 @@ class NetworkModule {
         return Retrofit.Builder()
             .client(httpClient)
             .addConverterFactory(GsonConverterFactory.create(gson))
-            .addConverterFactory(ScalarsConverterFactory.create())
             .baseUrl(BuildConfig.BASE_API_URL)
             .build()
             .create(ApiService::class.java)
