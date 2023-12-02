@@ -14,6 +14,7 @@ import ru.aeon.testapp.domain.common.Either
 import ru.aeon.testapp.domain.error.NetworkError
 import java.io.InterruptedIOException
 import java.net.ConnectException
+import java.util.stream.Collectors
 
 abstract class BaseRepository {
     
@@ -23,7 +24,17 @@ abstract class BaseRepository {
         Either.Right(body.mapToDomain())
     }
     
-    protected fun <T, S> doNetworkRequest(
+    protected fun <T : DataMapper<S>, S> doNetworkRequestListWithMapping(
+        request: suspend () -> Response<ResponseDto<List<T>>>
+    ): Flow<Either<NetworkError, List<S>>> = doNetworkRequest(request) { body ->
+        Either.Right(
+            body.stream()
+                .map { dto -> dto.mapToDomain() }
+                .collect(Collectors.toList())
+        )
+    }
+    
+    private fun <T, S> doNetworkRequest(
         request: suspend () -> Response<ResponseDto<T>>,
         successful: (T) -> Either.Right<S>
     ): Flow<Either<NetworkError, S>> = flow {
